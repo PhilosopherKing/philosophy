@@ -22,10 +22,8 @@ public class KnowledgeController {
     // Request path: /knowledge
     @RequestMapping(value = "")
     public String index(Model model) {
-
         model.addAttribute("knowledge", knowledgeDao.findAll());
         model.addAttribute("title", "Knowledge");
-
         return "knowledge/index";
     }
 
@@ -38,15 +36,16 @@ public class KnowledgeController {
 
         @RequestMapping(value = "add", method = RequestMethod.POST)
         public String processAddKnowledgeForm(@ModelAttribute @Valid Knowledge newKnowledge,
-                                           Errors errors, Model model) {
+                                              Errors errors, Model model) {
 
             if (errors.hasErrors()) {
                 model.addAttribute("title", "Add Knowledge");
                 return "knowledge/add";
             }
-
-            knowledgeDao.save(newKnowledge);
-            return "redirect:";
+            else {
+                knowledgeDao.save(newKnowledge);
+                return "redirect:";
+            }
         }
 
     }
