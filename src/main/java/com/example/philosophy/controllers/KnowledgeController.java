@@ -43,6 +43,7 @@ public class KnowledgeController {
                 return "knowledge/add";
             }
             else {
+                model.addAttribute("knowledge", newKnowledge);
                 knowledgeDao.save(newKnowledge);
                 return "redirect:";
             }

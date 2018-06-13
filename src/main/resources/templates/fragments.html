@@ -14,10 +14,23 @@
 <body>
 
 <nav th:fragment="navigation">
+    <div>
+        <a href="/philosopher/login">Login</a> |
+        <a href="/philosopher/sign-up">Sign-up</a> |
+        <a href="/philosopher/logout">Log Out</a>
+    </div>
+
+    <br />
+
     <a href="/knowledge">Discussion</a> |
     <a href="/philosopher">Philosophers</a> |
-    <a href="/philosophers">Famous Philosophers</a>
+    <a href="/sage">Sages</a>
 </nav>
 
 </body>
+
+<footer th:fragment="footer">
+    <p>&#169 2018 Kyle Hayes</p>
+</footer>
+
 </html>

@@ -14,7 +14,7 @@ public class Philosopher {
     private int id;
 
     @NotNull
-    @Size(min=4, max=70)
+    @Size(min=4, max=70, message = "Must not be empty!")
     private String username;
 
     private String email;
@@ -23,9 +23,7 @@ public class Philosopher {
     @Size(min=4, message = "Must not be empty!")
     private String password;
 
-    public Philosopher() {
-
-    }
+    public Philosopher() { }
 
     public int getId() { return id; }
 

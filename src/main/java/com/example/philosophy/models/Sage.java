@@ -7,26 +7,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Knowledge {
+public class Sage {
 
     @Id
     @GeneratedValue
     private int id;
 
     @NotNull
-    @Size(min=3, max=100, message = "Must not be empty!")
+    @Size(min=1, max=200, message = "Must not be empty!")
     private String name;
 
-    @NotNull
-    @Size(min=1, message = "Must not be empty!")
-    private String body;
+    @Size(max=200, message = "Must be no longer than 200 characters!")
+    private String bio;
 
-    public Knowledge(String name, String body){
-        this.name = name;
-        this.body = body;
-    }
-
-    public Knowledge(){ }
+    public Sage() { }
 
     public int getId() { return id; }
 
@@ -34,8 +28,7 @@ public class Knowledge {
 
     public void setName(String name) { this.name = name; }
 
-    public String getBody() { return body; }
+    public String getBio() { return bio; }
 
-    public void setBody(String body) { this.body = body; }
-
+    public void setBio(String bio) { this.bio = bio; }
 }
