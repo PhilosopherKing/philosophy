@@ -14,7 +14,6 @@
 
 <br />
 
-<!--the other form solution/not springs official-->
 <div class="infobox">
     <form method="post" enctype="multipart/form-data" action="/sage/upload-file" th:object="${wisdom}">
 
@@ -55,7 +54,7 @@
 <div>
     <ul>
         <li th:each="file : ${files}">
-            <a th:href="${file}" th:text="${file.name}" />
+            <a th:href="${file}" th:text="${file}" />
         </li>
     </ul>
 </div>
