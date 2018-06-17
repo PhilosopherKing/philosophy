@@ -21,12 +21,12 @@ public class Knowledge {
     @Size(min=1, message = "Must not be empty!")
     private String body;
 
+    public Knowledge(){ }
+
     public Knowledge(String name, String body){
         this.name = name;
         this.body = body;
     }
-
-    public Knowledge(){ }
 
     public int getId() { return id; }
 

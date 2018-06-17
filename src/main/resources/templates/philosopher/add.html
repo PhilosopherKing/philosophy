@@ -11,6 +11,8 @@
 
 <form method="post" style="max-width:600px;" th:object="${philosopher}">
 
+    <br />
+
     <div class="form-group">
         <label th:for="username">Username</label>
         <input class="form-control" type="text" name="username" th:field="*{username}"/>
@@ -40,6 +42,8 @@
     <br />
 
     <input type="submit" value="Sign Up" />
+
+    <br />
 
 </form>
 

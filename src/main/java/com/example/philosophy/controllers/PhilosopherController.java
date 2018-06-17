@@ -47,4 +47,10 @@ public class PhilosopherController {
         }
     }
 
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login(Model model) {
+        model.addAttribute("title", "Philosopher Login");
+        return "philosopher/login";
+    }
+
 }

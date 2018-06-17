@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<h1 th:text="${title}">Default Title</h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<body>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<br />
+
+<!--the other form solution/not springs official-->
+<div class="infobox">
+    <form method="post" enctype="multipart/form-data" action="/sage/upload-file" th:object="${wisdom}">
+
+        <br />
+
+        <!--
+        <div>
+            <label>Sage: </label>
+            <select name="sageId">
+                <option th:each="sage : ${sages}"
+                        th:text="${sage.name}"
+                        th:value="${sage.id}"></option>
+            </select>
+        </div>
+        -->
+
+        <br />
+
+        <div>
+            <label>File to Upload: </label>
+            <input type="file" name="file"/>
+        </div>
+
+        <br />
+
+        <div>
+            <label></label>
+            <input type="submit" value="Upload" />
+        </div>
+
+        <br/>
+
+    </form>
+</div>
+
+<br />
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file.name}" />
+        </li>
+    </ul>
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>

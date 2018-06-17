@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<h1 th:text="${title}">Default Title</h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+<p>If you don't have an account, you may <a href="/philosopher/sign-up">create one</a> here!</p>
+
+<div class="infobox">
+
+    <form action="/login" method="post">
+
+        <br />
+
+        <div>
+            <label th:for="username">Username</label></td>
+            <input name="username" type="text">
+        </div>
+
+        <br />
+
+        <div>
+            <label th:for="password">Password</label></td>
+            <input name="password" type="password">
+        </div>
+
+        <br />
+
+        <input type="submit" value="Login">
+
+        <br />
+
+    </form>
+
+    <span class="error" th:text="${message}"></span>
+
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>
