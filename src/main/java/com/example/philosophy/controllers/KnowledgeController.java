@@ -23,13 +23,13 @@ public class KnowledgeController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("knowledge", knowledgeDao.findAll());
-        // model.addAttribute("title", "Knowledge");
+        model.addAttribute("title", "Knowledge");
         return "knowledge/index";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddKnowledgeForm(Model model) {
-            // model.addAttribute("title", "Add Knowledge");
+            model.addAttribute("title", "Add Knowledge");
             model.addAttribute(new Knowledge());
             return "knowledge/add";
         }
@@ -39,7 +39,7 @@ public class KnowledgeController {
                                               Errors errors, Model model) {
 
             if (errors.hasErrors()) {
-                // model.addAttribute("title", "Add Knowledge");
+                model.addAttribute("title", "Add Knowledge");
                 return "knowledge/add";
             }
             else {

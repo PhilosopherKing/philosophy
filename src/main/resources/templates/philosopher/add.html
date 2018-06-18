@@ -4,48 +4,48 @@
 
 <body>
 
-<h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
 
-<div class="jumbotron">
+<div class="jumbotron" style="margin:20px">
 
+<center>
 <form method="post" style="max-width:600px;" th:object="${philosopher}">
 
-    <br />
+    <div class="card border-info mb-3" style="max-width: 600px;">
+        <div class="card-header">
+            <div class="form-group">
+                <label th:for="username">Username</label>
+                <input class="form-control" type="text" name="username" th:field="*{username}" placeholder="Create Username"/>
+            </div>
 
-    <div class="form-group">
-        <label th:for="username">Username</label>
-        <input class="form-control" type="text" name="username" th:field="*{username}"/>
-    </div>
+            <div class="form-group">
+                <label th:for="email">Email:</label>
+                <input class="form-control"  type="email" name="email" th:field="*{email}" aria-describedby="emailHelp" placeholder="Enter Email"/>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
 
-    <br />
+            <div class="form-group">
+                <label th:for="password">Password:</label>
+                <input class="form-control" type="password" name="password" th:field="*{password}" placeholder="Create Password"/>
+            </div>
 
-    <div class="form-group">
-        <label th:for="email">Email:</label>
-        <input class="form-control"  type="email" name="email" th:field="*{email}"/>
-    </div>
+            <div class="form-group">
+                <label th:for="verify">Verify:</label>
+                <input class="form-control" type="password" name="verify" placeholder="Verify Password" />
+            </div>
+        </div>
 
-    <br />
-
-    <div class="form-group">
-        <label th:for="password">Password:</label>
-        <input class="form-control" type="password" name="password" th:field="*{password}" />
-    </div>
-
-    <br />
-
-    <div class="form-group">
-        <label th:for="verify">Verify:</label>
-        <input class="form-control" type="password" name="verify" />
-    </div>
-
-    <br />
-
-    <input class="btn btn-success btn-lg" type="submit" value="Sign Up" />
+        <div class="card-body">
+            <center>
+                <input class="btn btn-success btn-lg" type="submit" value="Sign Up" />
+            </center>
+        </div>
 
     <br />
 
 </form>
+</center>
 
 <span class="error" th:text="${message}"></span>
 

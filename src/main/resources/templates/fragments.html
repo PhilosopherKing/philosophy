@@ -15,21 +15,20 @@
 </head>
 <body>
 
-<title th:text="${title}">Philosophy</title>
-
 <nav th:fragment="navigation">
 
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active"><a href="/knowledge">Discussion</a></li>
-        <li class="breadcrumb-item active"><a href="/philosopher">Philosophers</a></li>
         <li class="breadcrumb-item active"><a href="/sage">Sages</a></li>
+        <li class="breadcrumb-item active"><a href="/philosopher">Philosophers</a></li>
+        <li class="breadcrumb-item active"><a href="/knowledge">Discussion</a></li>
 
-        <li class="breadcrumb-item"><a href="/philosopher/sign-up">Sign Up</a></li>
         <li class="breadcrumb-item disabled"><a href="/philosopher/login">Log In</a></li>
         <li class="breadcrumb-item disabled"><a href="/philosopher/logout">Log Out</a></li>
     </ol>
 
 </nav>
+
+<center><h3 th:text="${title}">Philosophy</h3></center>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -40,8 +39,10 @@
 </body>
 
 <footer th:fragment="footer">
-    <div class="jumbotron">
-        <p>&#169 2018 Kyle Hayes</p>
+    <div class="jumbotron" style="margin:20px">
+        <center>
+            <p>&#169 2018 Kyle Hayes</p>
+        </center>
     </div>
 </footer>
 

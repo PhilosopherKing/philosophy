@@ -2,60 +2,74 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<h1 th:text="${title}">Default Title</h1>
-<nav th:replace="fragments :: navigation"></nav>
-
-
 <body>
 
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
+<nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
+
+<div class="alert alert-dismissible alert-success" style="margin:20px" th:if="${message}" >
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong th:text="${message}"/>
+    <a href="#" class="alert-link">Well Done!</a>.
 </div>
 
-<br />
+<div class="jumbotron" style="margin:20px">
 
-<div class="jumbotron">
+    <center>
     <form method="post" enctype="multipart/form-data" action="/sage/upload-file" th:object="${wisdom}">
 
-        <br />
+        <div class="card border-info mb-3" style="max-width: 400px;">
+            <div class="card-header">
+                <div class="form-group">
+                    <label>File to Upload: </label>
+                    <input class="form-control-file" aria-describedby="fileHelp" type="file" name="file"/>
+                    <small id="fileHelp" class="form-text text-muted">Help text for the above input goes here!.</small>
+                </div>
+            </div>
 
-        <!--
-        <div>
-            <label>Sage: </label>
-            <select name="sageId">
-                <option th:each="sage : ${sages}"
-                        th:text="${sage.name}"
-                        th:value="${sage.id}"></option>
-            </select>
+            <!--
+            <div>
+                <label>Sage: </label>
+                <select name="sageId">
+                    <option th:each="sage : ${sages}"
+                            th:text="${sage.name}"
+                            th:value="${sage.id}"></option>
+                </select>
+            </div>
+            -->
+
+            <div class="card-body">
+                <div>
+                    <center>
+                        <label></label>
+                        <input class="btn btn-success btn-lg" type="submit" value="Upload" />
+                    </center>
+                </div>
+            </div>
         </div>
-        -->
-
-        <div class="form-group">
-            <label>File to Upload: </label>
-            <input class="form-control-file" aria-describedby="fileHelp" type="file" name="file"/>
-            <small id="fileHelp" class="form-text text-muted">Help text for the above input goes here!.</small>
-        </div>
-
-        <br />
-
-        <div>
-            <label></label>
-            <input class="btn btn-success btn-lg" type="submit" value="Upload" />
-        </div>
-
-        <br/>
 
     </form>
+    </center>
+
 </div>
 
-<br />
-
-<div>
-    <ul>
-        <li th:each="file : ${files}">
-            <a th:href="${file}" th:text="${file}" />
-        </li>
-    </ul>
+<div class="jumbotron" style="margin:20px" >
+<table class="table table-hover">
+    <thead>
+    <tr class="table-success">
+        <th scope="col">File Name</th>
+        <th scope="col">File</th>
+        <th scope="col">Size</th>
+    </tr>
+    </thead>
+    <tbody th:each="file : ${files}" >
+    <tr class="table-light">
+        <th scope="row">File Name</th>
+        <td><a th:href="${file}" th:text="${file}" /></td>
+        <td>Column content</td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 </body>

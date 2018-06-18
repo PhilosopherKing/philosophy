@@ -4,30 +4,37 @@
 
 <body>
 
-<h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
 
 <nav>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin:20px">
         <li class="breadcrumb-item"><a href="/knowledge/add">Add a new discussion post here</a></li>
     </ol>
 </nav>
 
-<div class="jumbotron">
+<div class="jumbotron" style="margin:20px">
 <ul>
 
     <p th:unless="${knowledge} and ${knowledge.size()}">No Knowledge Added :(</p>
 
-    <div class="card border-info mb-3" style="max-width: 450px;" th:each="info : ${knowledge}">
+
+    <center>
+    <div class="card border-info mb-3" style="max-width:600px;" th:each="info : ${knowledge}">
         <div class="card-header">
-            <h3 th:text="${info.name}"></h3>
-            <figcaption><p>written by: </p></figcaption>
+            <center>
+                <strong><h4 th:text="${info.name}"></h4></strong>
+                <i><figcaption><p>written by: </p></figcaption></i>
+            </center>
         </div>
         <div class="card-body">
-            <p th:text="${info.body}"></p>
+            <center>
+                <p th:text="${info.body}"></p>
+            </center>
             <a href="/knowledge/remove">Remove</a>
         </div>
     </div>
+    </center>
 
 </ul>
 </div>

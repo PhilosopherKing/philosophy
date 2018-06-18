@@ -20,7 +20,7 @@ public class PhilosopherController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("philosophers", philosopherDao.findAll());
-        // model.addAttribute("title", "Philosophers");
+        model.addAttribute("title", "Philosophers");
         return "philosopher/index";
     }
 
@@ -49,7 +49,7 @@ public class PhilosopherController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(Model model) {
-       // model.addAttribute("title", "Philosopher Login");
+        // model.addAttribute("title", "Philosopher Login");
         return "philosopher/login";
     }
 

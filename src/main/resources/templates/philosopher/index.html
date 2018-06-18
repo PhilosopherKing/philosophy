@@ -4,22 +4,32 @@
 
 <body>
 
-<h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
 
-<div class="jumbotron">
+<nav>
+    <ol class="breadcrumb" style="margin:20px">
+        <li class="breadcrumb-item"><a href="/philosopher/sign-up">Sign Up</a></li>
+    </ol>
+</nav>
+
+<div class="jumbotron" style="margin:20px">
 <ul>
 
     <p th:unless="${philosophers} and ${philosophers.size()}">No Philosophers :(</p>
 
-    <div class="card border-info mb-3" style="max-width: 450px;" th:each="philosopher : ${philosophers}">
+    <div class="card border-info mb-3" style="max-width:500px; display:inline-block; margin:10px;" th:each="philosopher : ${philosophers}">
         <div class="card-header">
-            <h2 th:text="${philosopher.name}"></h2>
+            <center>
+                <h3 th:text="${philosopher.name}"></h3>
+            </center>
         </div>
         <div class="card-body">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/The_School_of_Athens.jpg" alt="philosophers" height=200px width=400px />
-            <figcaption><a href="/knowledge/">read philosophy here</a></figcaption>
-            <p th:text="'Email: ' + ${philosopher.email}"></p>
+            <center>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/The_School_of_Athens.jpg" alt="philosophers" height=200px width=400px />
+                <figcaption><a href="/knowledge/">read philosophy here</a></figcaption>
+                <p th:text="'Email: ' + ${philosopher.email}"></p>
+            </center>
         </div>
     </div>
 
