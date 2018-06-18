@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
-    <meta charset="UTF-8"/>
-    <title th:text="${title}">Philosophy</title>
 
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <!--<link rel="stylesheet" th:href="@{/css/styles.css}" />-->
+    <!--<script type="text/javascript" th:src="@{/js/script.js}"></script>-->
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
-    <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css}" />
 
 </head>
 <body>
 
+<title th:text="${title}">Philosophy</title>
+
 <nav th:fragment="navigation">
-    <div>
-        <a href="/philosopher/login">Login</a> |
-        <a href="/philosopher/sign-up">Sign-up</a> |
-        <a href="/philosopher/logout">Log Out</a>
-    </div>
 
-    <br />
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="/knowledge">Discussion</a></li>
+        <li class="breadcrumb-item active"><a href="/philosopher">Philosophers</a></li>
+        <li class="breadcrumb-item active"><a href="/sage">Sages</a></li>
 
-    <a href="/knowledge">Discussion</a> |
-    <a href="/philosopher">Philosophers</a> |
-    <a href="/sage">Sages</a>
+        <li class="breadcrumb-item"><a href="/philosopher/sign-up">Sign Up</a></li>
+        <li class="breadcrumb-item disabled"><a href="/philosopher/login">Log In</a></li>
+        <li class="breadcrumb-item disabled"><a href="/philosopher/logout">Log Out</a></li>
+    </ol>
+
 </nav>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}" ></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js}" ></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}" ></script>
 
 </body>
 
 <footer th:fragment="footer">
-    <p>&#169 2018 Kyle Hayes</p>
+    <div class="jumbotron">
+        <p>&#169 2018 Kyle Hayes</p>
+    </div>
 </footer>
 
 </html>

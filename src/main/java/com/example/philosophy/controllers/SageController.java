@@ -35,13 +35,13 @@ public class SageController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("sages", sageDao.findAll());
-        model.addAttribute("title", "Sages");
+       // model.addAttribute("title", "Sages");
         return "sage/index";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addForm (Model model) {
-        model.addAttribute("title", "Add a new Sage");
+        // model.addAttribute("title", "Add a new Sage");
         model.addAttribute(new Sage());
         return "sage/add";
     }
@@ -50,7 +50,7 @@ public class SageController {
     public String add(Model model, @ModelAttribute @Valid Sage newSage, Errors errors) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add a new Sage");
+            // model.addAttribute("title", "Add a new Sage");
             return "sage/add";
         } else {
             model.addAttribute("sage", newSage);
@@ -68,7 +68,7 @@ public class SageController {
                         "serveFile", path.getFileName().toString()).build().toString())
                 .collect(Collectors.toList()));
 
-        model.addAttribute("title", "Upload a New File");
+        // model.addAttribute("title", "Upload a New File");
 
         return "sage/upload";
     }

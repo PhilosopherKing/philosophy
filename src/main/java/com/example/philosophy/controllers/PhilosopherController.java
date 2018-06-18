@@ -20,13 +20,13 @@ public class PhilosopherController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("philosophers", philosopherDao.findAll());
-        model.addAttribute("title", "Philosophers");
+        // model.addAttribute("title", "Philosophers");
         return "philosopher/index";
     }
 
     @RequestMapping(value = "sign-up", method = RequestMethod.GET)
     public String add(Model model) {
-        model.addAttribute("title", "Philosopher Sign-up");
+        // model.addAttribute("title", "Philosopher Sign-up");
         model.addAttribute(new Philosopher());
         return "philosopher/add";
     }
@@ -41,7 +41,7 @@ public class PhilosopherController {
         } else {
             model.addAttribute("username", newPhilosopher.getUsername());
             model.addAttribute("email", newPhilosopher.getEmail());
-            model.addAttribute("title", "Philosopher Sign-up");
+            // model.addAttribute("title", "Philosopher Sign-up");
             model.addAttribute("message", "Passwords do not match");
             return "philosopher/add";
         }
@@ -49,7 +49,7 @@ public class PhilosopherController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(Model model) {
-        model.addAttribute("title", "Philosopher Login");
+       // model.addAttribute("title", "Philosopher Login");
         return "philosopher/login";
     }
 

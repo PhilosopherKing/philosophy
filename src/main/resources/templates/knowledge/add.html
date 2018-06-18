@@ -7,14 +7,14 @@
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class="infobox">
+<div class="jumbotron">
 
 <form method="post" style="max-width:600px;" th:object="${knowledge}">
 
     <br />
 
     <div class="form-group">
-        <label th:for="name">Name</label>
+        <label th:for="name">Title</label>
         <input class="form-control" th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
@@ -29,7 +29,7 @@
 
     <br />
 
-    <input type="submit" value="Post" />
+    <input class="btn btn-success btn-lg" type="submit" value="Post" />
 
 </form>
 
