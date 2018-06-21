@@ -7,18 +7,12 @@
 <nav th:replace="fragments :: navigation"></nav>
 <center><h3 th:text="${title}">Philosophy</h3></center>
 
-<nav>
-    <ol class="breadcrumb" style="margin:20px 65px">
-        <li class="breadcrumb-item"><a href="/philosopher/sign-up">Sign Up</a></li>
-    </ol>
-</nav>
-
 <div class="jumbotron" style="margin:20px 65px">
 <ul>
 
     <p th:unless="${philosophers} and ${philosophers.size()}">No Philosophers :(</p>
 
-    <div class="card border-info mb-3" style="max-width:500px; display:inline-block; margin:10px;" th:each="philosopher : ${philosophers}">
+    <div class="card border-primary mb-3" style="max-width:500px; display:inline-block; margin:10px;" th:each="philosopher : ${philosophers}">
         <div class="card-header">
             <center>
                 <h3 th:text="${philosopher.name}"></h3>

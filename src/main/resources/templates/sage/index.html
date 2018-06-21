@@ -19,7 +19,7 @@
 
     <p th:unless="${sages} and ${sages.size()}">No Sages :(</p>
 
-    <div class="card border-info mb-3" style="min-width: 500px; max-width:500px; display:inline-block; margin:20px 16px" th:each="sage : ${sages}">
+    <div class="card border-primary mb-3" style="min-width: 500px; max-width:500px; display:inline-block; margin:20px 16px" th:each="sage : ${sages}">
         <div class="card-header">
             <center>
                 <h3 th:text="${sage.name}"></h3>

@@ -18,9 +18,8 @@
 
     <p th:unless="${knowledge} and ${knowledge.size()}">No Knowledge Added :(</p>
 
-
     <center>
-    <div class="card border-info mb-3" style="max-width:600px;" th:each="info : ${knowledge}">
+    <div class="card border-primary mb-3" style="max-width:600px;" th:each="info : ${knowledge}">
         <div class="card-header">
             <center>
                 <strong><h4 th:text="${info.name}"></h4></strong>
