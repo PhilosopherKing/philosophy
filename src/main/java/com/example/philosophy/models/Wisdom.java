@@ -1,25 +1,27 @@
 package com.example.philosophy.models;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Wisdom {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
-    @NotNull
+    private String fileName;
+
     private byte[] file;
 
     public Wisdom() { }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
+
+    public String getFileName() { return fileName; }
+
+    public void setFileName(String fileName) { this.fileName = fileName; }
 
     public Wisdom(byte[] file){ this.file = file; }
 

@@ -8,18 +8,18 @@
 <center><h3 th:text="${title}">Philosophy</h3></center>
 
 <nav>
-    <ol class="breadcrumb" style="margin:20px">
+    <ol class="breadcrumb" style="margin:20px 65px">
         <li class="breadcrumb-item"><a href="/sage/add">Add a new Sage here</a></li>
         <li class="breadcrumb-item"><a href="/sage/upload-file">Upload a file here</a></li>
     </ol>
 </nav>
 
-<div class="jumbotron" style="margin:20px">
+<div class="jumbotron" style="margin:20px 65px">
 <ul>
 
     <p th:unless="${sages} and ${sages.size()}">No Sages :(</p>
 
-    <div class="card border-info mb-3" style="max-width:500px; display:inline-block; margin:10px;" th:each="sage : ${sages}">
+    <div class="card border-info mb-3" style="min-width: 500px; max-width:500px; display:inline-block; margin:20px 16px" th:each="sage : ${sages}">
         <div class="card-header">
             <center>
                 <h3 th:text="${sage.name}"></h3>
@@ -27,7 +27,7 @@
         </div>
         <div class="card-body">
             <center>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/The_School_of_Athens.jpg" alt="philosophers" height=200px width=400px />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/The_School_of_Athens.jpg" alt="philosophers" height=200px width=450px />
                 <figcaption><a href="/knowledge/">read philosophy here</a></figcaption>
                 <p th:text="'Bio: ' + ${sage.bio}"></p>
             </center>
