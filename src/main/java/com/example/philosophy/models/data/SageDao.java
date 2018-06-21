@@ -8,5 +8,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface SageDao extends CrudRepository<Sage, Integer> {
+public interface SageDao extends CrudRepository <Sage, Integer> {
+
 }

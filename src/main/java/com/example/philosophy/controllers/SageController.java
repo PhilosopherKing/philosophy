@@ -1,6 +1,5 @@
 package com.example.philosophy.controllers;
 
-
 import com.example.philosophy.models.Sage;
 import com.example.philosophy.models.Wisdom;
 import com.example.philosophy.models.data.SageDao;
@@ -9,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("sage")
@@ -61,16 +58,21 @@ public class SageController {
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("title", "Upload a New File");
+        model.addAttribute(new Wisdom());
+        model.addAttribute("sages", sageDao.findAll());
         model.addAttribute("files", wisdomDao.findAll());
 
         return "sage/upload";
     }
 
     @RequestMapping(value = "upload-file", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile wisdom, RedirectAttributes redirectAttributes) throws IOException {
+    public String handleFileUpload(@RequestParam("file") MultipartFile wisdom, @RequestParam int sageId, RedirectAttributes redirectAttributes) throws IOException {
 
         Wisdom uploadFile = new Wisdom();
+        Sage sage = sageDao.findById(sageId).orElse(null);
+
         uploadFile.setFileName(wisdom.getOriginalFilename());
+        uploadFile.setSage(sage);
         // uploadFile.setFile(wisdom.getBytes());
         wisdomDao.save(uploadFile);
 
@@ -78,6 +80,18 @@ public class SageController {
                 "You successfully uploaded " + wisdom.getOriginalFilename() + "!");
 
         return "redirect:/sage/upload-file";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String category(Model model, @PathVariable int id){
+
+        Sage sage = sageDao.findById(id).orElse(null);
+        List<Wisdom> uploads = sage.getUploads();
+
+        model.addAttribute("uploads", uploads);
+        model.addAttribute("title", sage.getName());
+
+        return "sage/view";
     }
 
 }

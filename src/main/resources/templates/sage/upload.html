@@ -21,22 +21,19 @@
         <div class="card border-success mb-3" style="max-width: 400px;">
             <div class="card-header">
                 <div class="form-group">
+                    <label th:for="sage">Sage: </label>
+                    <select class="form-control" style="max-width: 300px" name="sageId">
+                        <option th:each="sage : ${sages}"
+                                th:text="${sage.name}"
+                                th:value="${sage.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>File to Upload: </label>
-                    <input class="form-control-file" aria-describedby="fileHelp" type="file" name="file"/>
-                    <small id="fileHelp" class="form-text text-muted">Help text for the above input goes here!.</small>
+                    <input class="form-control" style="max-width: 300px" aria-describedby="fileHelp" type="file" name="file"/>
+                    <small id="fileHelp" class="form-text text-muted">Still doesn't save data from file just the filename!</small>
                 </div>
             </div>
-
-            <!--
-            <div>
-                <label>Sage: </label>
-                <select name="sageId">
-                    <option th:each="sage : ${sages}"
-                            th:text="${sage.name}"
-                            th:value="${sage.id}"></option>
-                </select>
-            </div>
-            -->
 
             <div class="card-body">
                 <div>
@@ -59,14 +56,14 @@
     <tr class="table-success">
         <th scope="col">File Name</th>
         <th scope="col">File</th>
-        <th scope="col">Size</th>
+        <th scope="col">Sage</th>
     </tr>
     </thead>
     <tbody th:each="file : ${files}" >
     <tr class="table-light">
         <th scope="row">File Name</th>
         <td><a th:href="${file}" th:text="${file.fileName}" /></td>
-        <td>Column content</td>
+        <td th:text="${file.sage.name}">Column content</td>
     </tr>
     </tbody>
 </table>
