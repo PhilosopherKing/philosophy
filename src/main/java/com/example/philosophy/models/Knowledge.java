@@ -3,6 +3,7 @@ package com.example.philosophy.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,6 +22,9 @@ public class Knowledge {
     @Size(min=1, message = "Must not be empty!")
     private String body;
 
+    @ManyToOne
+    private Branch branch;
+
     public Knowledge(){ }
 
     public Knowledge(String name, String body){
@@ -37,5 +41,9 @@ public class Knowledge {
     public String getBody() { return body; }
 
     public void setBody(String body) { this.body = body; }
+
+    public Branch getBranch() { return branch; }
+
+    public void setBranch(Branch branch) { this.branch = branch; }
 
 }

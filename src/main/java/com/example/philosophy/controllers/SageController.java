@@ -13,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -73,7 +76,12 @@ public class SageController {
 
         uploadFile.setFileName(wisdom.getOriginalFilename());
         uploadFile.setSage(sage);
-        // uploadFile.setFile(wisdom.getBytes());
+
+        // if(!wisdom.isEmpty()){
+            // byte[] bytes = wisdom.getBytes();
+            // uploadFile.setFile(bytes);
+        // }
+
         wisdomDao.save(uploadFile);
 
         redirectAttributes.addFlashAttribute("message",
@@ -83,7 +91,7 @@ public class SageController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String category(Model model, @PathVariable int id){
+    public String sagePage(Model model, @PathVariable int id){
 
         Sage sage = sageDao.findById(id).orElse(null);
         List<Wisdom> uploads = sage.getUploads();

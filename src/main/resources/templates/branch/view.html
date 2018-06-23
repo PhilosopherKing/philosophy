@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
+
+<div class="jumbotron" style="margin:20px 65px" >
+    <table class="table table-hover">
+        <thead>
+        <tr class="table-success">
+            <th scope="col">Username</th>
+            <th scope="col">Title</th>
+            <th scope="col">Branch</th>
+        </tr>
+        </thead>
+        <tbody th:each="philosophy : ${philosophies}" >
+        <tr class="table-light">
+            <th scope="row">Name</th>
+            <td><a href="/knowledge" th:text="${philosophy.name}" /></td>
+            <td th:text="${philosophy.branch.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>

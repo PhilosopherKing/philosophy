@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
+
+<nav>
+    <ol class="breadcrumb" style="margin:20px 65px">
+        <li class="breadcrumb-item"><a href="/add-branch">Add a new branch here</a></li>
+    </ol>
+</nav>
+
+<div class="jumbotron" style="margin:20px 65px">
+
+    <center><h3>Branches of Philosophy</h3></center>
+
+    <br />
+
+    <p th:unless="${branches} and ${branches.size()}">No Branches :(</p>
+
+    <center>
+        <div class="card border-primary mb-3" style="max-width:600px;" th:each="branch : ${branches}">
+            <div class="card-header">
+                <center>
+                    <strong><h4 th:text="${branch.name}"></h4></strong>
+                </center>
+            </div>
+            <div class="card-body">
+                <center>
+                    <p th:text="${branch.description}"></p>
+                    <figcaption><a th:href="'/' + ${branch.id}">Read philosophy here</a></figcaption>
+
+                    <br />
+
+                    <a href="/remove-branch">Remove</a>
+                </center>
+            </div>
+        </div>
+    </center>
+
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>

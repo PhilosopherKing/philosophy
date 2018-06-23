@@ -1,6 +1,8 @@
 package com.example.philosophy.controllers;
 
+import com.example.philosophy.models.Branch;
 import com.example.philosophy.models.Knowledge;
+import com.example.philosophy.models.data.BranchDao;
 import com.example.philosophy.models.data.KnowledgeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -18,6 +21,9 @@ public class KnowledgeController {
 
     @Autowired
     KnowledgeDao knowledgeDao;
+
+    @Autowired
+    BranchDao branchDao;
 
     // Request path: /knowledge
     @RequestMapping(value = "")
@@ -30,23 +36,28 @@ public class KnowledgeController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddKnowledgeForm(Model model) {
             model.addAttribute("title", "Add Knowledge");
+            model.addAttribute("branch", branchDao.findAll());
             model.addAttribute(new Knowledge());
             return "knowledge/add";
         }
 
-        @RequestMapping(value = "add", method = RequestMethod.POST)
-        public String processAddKnowledgeForm(@ModelAttribute @Valid Knowledge newKnowledge,
-                                              Errors errors, Model model) {
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String processAddKnowledgeForm(@ModelAttribute @Valid Knowledge newKnowledge,
+                                          @RequestParam int branchId,
+                                          Errors errors, Model model) {
 
-            if (errors.hasErrors()) {
-                model.addAttribute("title", "Add Knowledge");
-                return "knowledge/add";
-            }
-            else {
-                model.addAttribute("knowledge", newKnowledge);
-                knowledgeDao.save(newKnowledge);
-                return "redirect:";
-            }
+        Branch branch = branchDao.findById(branchId).orElse(null);
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Knowledge");
+            return "knowledge/add";
+        } else {
+            model.addAttribute("knowledge", newKnowledge);
+            newKnowledge.setBranch(branch);
+            knowledgeDao.save(newKnowledge);
+            return "redirect:";
         }
+
+    }
 
     }

@@ -14,9 +14,8 @@
 </nav>
 
 <div class="jumbotron" style="margin:20px 65px">
-<ul>
 
-    <p th:unless="${knowledge} and ${knowledge.size()}">No Knowledge Added :(</p>
+    <p th:unless="${knowledge} and ${knowledge.size()}">No Knowledge :(</p>
 
     <center>
     <div class="card border-primary mb-3" style="max-width:600px;" th:each="info : ${knowledge}">
@@ -24,6 +23,7 @@
             <center>
                 <strong><h4 th:text="${info.name}"></h4></strong>
                 <i><figcaption><p>written by: </p></figcaption></i>
+                <i><figcaption><a href="/" th:text="'Branch: ' + ${info.branch.name}"></a></figcaption></i>
             </center>
         </div>
         <div class="card-body">
@@ -35,7 +35,6 @@
     </div>
     </center>
 
-</ul>
 </div>
 
 </body>

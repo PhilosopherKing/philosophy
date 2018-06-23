@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
+
+<div class="jumbotron" style="margin:20px 65px">
+
+    <center>
+        <form method="post" style="max-width:600px;" th:object="${branch}">
+
+            <div class="card border-success mb-3" style="max-width: 600px;">
+                <div class="card-header">
+                    <center>
+                        <div class="form-group">
+                            <label th:for="name">Name</label>
+                            <input class="form-control" th:field="*{name}" placeholder="Name of Branch"/>
+                            <span th:errors="*{name}" class="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label th:for="description">Description</label>
+                            <textarea class="form-control" type="text" th:field="*{description}" placeholder="Description"></textarea>
+                            <span th:errors="*{description}" class="error"></span>
+                        </div>
+                    </center>
+                </div>
+
+                <div class="card-body">
+                    <center>
+                        <input class="btn btn-success btn-lg" type="submit" value="Add" />
+                    </center>
+                </div>
+            </div>
+
+        </form>
+    </center>
+
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>
