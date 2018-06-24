@@ -9,10 +9,10 @@
 
 <div class="jumbotron" style="margin:20px 65px" >
 
-    <p th:unless="${philosophies} and ${philosophies.size()}">No Knowledge or Wisdom :(</p>
+    <p th:unless="${philosophies} and ${philosophies.size()}">No Knowledge :(</p>
 
     <center>
-        <div class="card border-success mb-3" style="max-width:600px;" th:each="philosophy : ${philosophies}">
+        <div class="card border-primary mb-3" style="max-width:600px;" th:each="philosophy : ${philosophies}">
             <div class="card-header">
                 <center>
                     <strong><h4 th:text="${philosophy.name}"></h4></strong>

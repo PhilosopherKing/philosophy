@@ -1,7 +1,9 @@
 package com.example.philosophy.controllers;
 
+import com.example.philosophy.models.Branch;
 import com.example.philosophy.models.Sage;
 import com.example.philosophy.models.Wisdom;
+import com.example.philosophy.models.data.BranchDao;
 import com.example.philosophy.models.data.SageDao;
 import com.example.philosophy.models.data.WisdomDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class SageController {
 
     @Autowired
     WisdomDao wisdomDao;
+
+    @Autowired
+    BranchDao branchDao;
 
     // Request path: /sage
     @RequestMapping(value = "")
@@ -63,19 +68,25 @@ public class SageController {
         model.addAttribute("title", "Upload a New File");
         model.addAttribute(new Wisdom());
         model.addAttribute("sages", sageDao.findAll());
+        model.addAttribute("branch", branchDao.findAll());
         model.addAttribute("files", wisdomDao.findAll());
 
         return "sage/upload";
     }
 
     @RequestMapping(value = "upload-file", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile wisdom, @RequestParam int sageId, RedirectAttributes redirectAttributes) throws IOException {
+    public String handleFileUpload(@RequestParam("file") MultipartFile wisdom, @RequestParam int sageId,
+                                   @RequestParam int branchId, RedirectAttributes redirectAttributes) throws IOException {
 
         Wisdom uploadFile = new Wisdom();
+
         Sage sage = sageDao.findById(sageId).orElse(null);
+
+        Branch branch = branchDao.findById(branchId).orElse(null);
 
         uploadFile.setFileName(wisdom.getOriginalFilename());
         uploadFile.setSage(sage);
+        uploadFile.setBranch(branch);
 
         // if(!wisdom.isEmpty()){
             // byte[] bytes = wisdom.getBytes();
@@ -94,9 +105,9 @@ public class SageController {
     public String sagePage(Model model, @PathVariable int id){
 
         Sage sage = sageDao.findById(id).orElse(null);
-        List<Wisdom> uploads = sage.getUploads();
+        List<Wisdom> philosophies = sage.getPhilosophies();
 
-        model.addAttribute("uploads", uploads);
+        model.addAttribute("philosophies", philosophies);
         model.addAttribute("title", sage.getName());
 
         return "sage/view";

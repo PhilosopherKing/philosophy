@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 public class Branch {
 
-
     @Id
     @GeneratedValue
     private int id;
@@ -25,6 +24,10 @@ public class Branch {
     @OneToMany
     @JoinColumn(name = "branch_id")
     private List<Knowledge> philosophies = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "branch_id")
+    private List<Wisdom> wisdoms = new ArrayList<>();
 
     public Branch(){}
 
@@ -46,5 +49,9 @@ public class Branch {
     public List<Knowledge> getPhilosophies() { return philosophies; }
 
     public void setPhilosophies(List<Knowledge> philosophies) { this.philosophies = philosophies; }
+
+    public List<Wisdom> getWisdoms() { return wisdoms; }
+
+    public void setWisdoms(List<Wisdom> wisdoms) { this.wisdoms = wisdoms; }
 
 }

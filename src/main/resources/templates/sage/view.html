@@ -8,22 +8,29 @@
 <center><h3 th:text="${title}">Philosophy</h3></center>
 
 <div class="jumbotron" style="margin:20px 65px" >
-    <table class="table table-hover">
-        <thead>
-        <tr class="table-success">
-            <th scope="col">File Name</th>
-            <th scope="col">File</th>
-            <th scope="col">Sage</th>
-        </tr>
-        </thead>
-        <tbody th:each="file : ${uploads}" >
-        <tr class="table-light">
-            <th scope="row">File Name</th>
-            <td><a th:href="${file}" th:text="${file.fileName}" /></td>
-            <td th:text="${file.sage.name}">Column content</td>
-        </tr>
-        </tbody>
-    </table>
+
+    <p th:unless="${philosophies} and ${philosophies.size()}">No Wisdom :(</p>
+
+    <center>
+        <div class="card border-primary mb-3" style="max-width:600px;" th:each="philosophy : ${philosophies}">
+            <div class="card-header">
+                <center>
+                    <strong><h4 th:text="${philosophy.fileName}"></h4></strong>
+                    <i><figcaption><a th:href="'/' + ${philosophy.branch.id}" th:text="'Branch: ' + ${philosophy.branch.name}"></a></figcaption></i>
+                </center>
+            </div>
+            <div class="card-body">
+                <i><figcaption><a th:href="'/sage/' + ${philosophy.sage.id}" th:text="'Written By: ' + ${philosophy.sage.name}">written by: </a></figcaption></i>
+                <br />
+                <center>
+                    <p th:text="${philosophy.fileName}"></p>
+                </center>
+                <br />
+                <a href="/sage/remove">Remove</a>
+            </div>
+        </div>
+    </center>
+
 </div>
 
 </body>

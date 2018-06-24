@@ -25,6 +25,9 @@ public class Knowledge {
     @ManyToOne
     private Branch branch;
 
+    @ManyToOne
+    private Philosopher philosopher;
+
     public Knowledge(){ }
 
     public Knowledge(String name, String body){
@@ -45,5 +48,9 @@ public class Knowledge {
     public Branch getBranch() { return branch; }
 
     public void setBranch(Branch branch) { this.branch = branch; }
+
+    public Philosopher getPhilosopher() { return philosopher; }
+
+    public void setPhilosopher(Philosopher philosopher) { this.philosopher = philosopher; }
 
 }

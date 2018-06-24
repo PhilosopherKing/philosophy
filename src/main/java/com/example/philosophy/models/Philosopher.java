@@ -1,10 +1,10 @@
 package com.example.philosophy.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Philosopher {
@@ -23,6 +23,10 @@ public class Philosopher {
     @Size(min=4, message = "Must not be empty!")
     private String password;
 
+    @OneToMany
+    @JoinColumn(name = "philosopher_id")
+    private List<Knowledge> philosophies = new ArrayList<>();
+
     public Philosopher() { }
 
     public int getId() { return id; }
@@ -38,5 +42,9 @@ public class Philosopher {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+
+    public List<Knowledge> getPhilosophies() { return philosophies; }
+
+    public void setPhilosophies(List<Knowledge> philosophies) { this.philosophies = philosophies; }
 
 }

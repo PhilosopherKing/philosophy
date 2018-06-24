@@ -22,7 +22,7 @@ public class Sage {
 
     @OneToMany
     @JoinColumn(name = "sage_id")
-    private List<Wisdom> uploads = new ArrayList<>();
+    private List<Wisdom> philosophies = new ArrayList<>();
 
     public Sage() { }
 
@@ -36,8 +36,8 @@ public class Sage {
 
     public void setBio(String bio) { this.bio = bio; }
 
-    public List<Wisdom> getUploads() { return uploads; }
+    public List<Wisdom> getPhilosophies() { return philosophies; }
 
-    public void setUploads(List<Wisdom> uploads) { this.uploads = uploads; }
+    public void setPhilosophies(List<Wisdom> philosophies) { this.philosophies = philosophies; }
 
 }

@@ -2,16 +2,15 @@ package com.example.philosophy.controllers;
 
 import com.example.philosophy.models.Branch;
 import com.example.philosophy.models.Knowledge;
+import com.example.philosophy.models.Philosopher;
 import com.example.philosophy.models.data.BranchDao;
 import com.example.philosophy.models.data.KnowledgeDao;
+import com.example.philosophy.models.data.PhilosopherDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,26 +24,44 @@ public class KnowledgeController {
     @Autowired
     BranchDao branchDao;
 
+    @Autowired
+    PhilosopherDao philosopherDao;
+
     // Request path: /knowledge
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("knowledge", knowledgeDao.findAll());
+        model.addAttribute("philosophers", philosopherDao.findAll());
         model.addAttribute("title", "Knowledge");
         return "knowledge/index";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddKnowledgeForm(Model model) {
-            model.addAttribute("title", "Add Knowledge");
-            model.addAttribute("branch", branchDao.findAll());
-            model.addAttribute(new Knowledge());
-            return "knowledge/add";
+    public String displayAddKnowledgeForm(Model model,
+                                          @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            return "redirect:/philosopher/login";
+        }
+
+        model.addAttribute("title", "Add Knowledge");
+        model.addAttribute("branch", branchDao.findAll());
+        model.addAttribute(new Knowledge());
+        return "knowledge/add";
+
         }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddKnowledgeForm(@ModelAttribute @Valid Knowledge newKnowledge,
                                           @RequestParam int branchId,
-                                          Errors errors, Model model) {
+                                          Errors errors, Model model,
+                                          @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            return "redirect:/philosopher/login";
+        }
+
+        Philosopher u = philosopherDao.findByUsername(username).get(0);
 
         Branch branch = branchDao.findById(branchId).orElse(null);
 
@@ -53,6 +70,7 @@ public class KnowledgeController {
             return "knowledge/add";
         } else {
             model.addAttribute("knowledge", newKnowledge);
+            newKnowledge.setPhilosopher(u);
             newKnowledge.setBranch(branch);
             knowledgeDao.save(newKnowledge);
             return "redirect:";
@@ -60,4 +78,4 @@ public class KnowledgeController {
 
     }
 
-    }
+}

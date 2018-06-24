@@ -22,14 +22,16 @@
         <div class="card-header">
             <center>
                 <strong><h4 th:text="${info.name}"></h4></strong>
-                <i><figcaption><p>written by: </p></figcaption></i>
-                <i><figcaption><a href="/" th:text="'Branch: ' + ${info.branch.name}"></a></figcaption></i>
+                <i><figcaption><a th:href="'/' + ${info.branch.id}" th:text="'Branch: ' + ${info.branch.name}"></a></figcaption></i>
             </center>
         </div>
         <div class="card-body">
+            <i><figcaption><a th:href="'/philosopher/' + ${info.philosopher.id}" th:text="'Written By: ' + ${info.philosopher.username}">written by: </a></figcaption></i>
+            <br />
             <center>
                 <p th:text="${info.body}"></p>
             </center>
+            <br />
             <a href="/knowledge/remove">Remove</a>
         </div>
     </div>
