@@ -9,9 +9,9 @@ Website that will allow people to study and research philosophy. It will also al
 ### Features
 
 * User login - Users will be able to create accounts and log in to the application. Each philosopher will have a profile page.
-* Search - Users will be able to search the database by philosophical branch.
+* Easy Research - Users will be able to search the database by philosophical branch, and individuals.
 * Make post and comments - Users will be able to create new posts when logged in meant for discussion and philosophical debate. New posts will appear in the philosopher's profile in addition to the discussion sections's main page.
-* Upload Files - Administrators will be able to upload files so that users can view, read, and download philosophy as pdfs. Users will also be able to upload files, such as previously typed papers and articles.
+* Upload Files (Update to come...) - Administrators will be able to upload files so that users can view, read, and download philosophy as pdfs. Users will also be able to upload files, such as previously typed papers and articles.
 
  
 ### Technologies
