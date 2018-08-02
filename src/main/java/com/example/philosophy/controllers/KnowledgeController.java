@@ -78,4 +78,15 @@ public class KnowledgeController {
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String knowledgePage(Model model, @PathVariable int id){
+
+        Knowledge knowledge = knowledgeDao.findById(id).orElse(null);
+
+        model.addAttribute("philosophy", knowledge);
+        model.addAttribute("title", knowledge.getName());
+
+        return "knowledge/view";
+    }
+
 }

@@ -21,7 +21,7 @@
     <div class="card border-primary mb-3" style="max-width:600px;" th:each="info : ${knowledge}">
         <div class="card-header">
             <center>
-                <strong><h4 th:text="${info.name}"></h4></strong>
+                <strong><h4><figcaption><a th:href="'/knowledge/' + ${info.id}" th:text="${info.name}"></a></figcaption></h4></strong>
                 <i><figcaption><a th:href="'/' + ${info.branch.id}" th:text="'Branch: ' + ${info.branch.name}"></a></figcaption></i>
             </center>
         </div>
