@@ -1,11 +1,10 @@
 package com.example.philosophy.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Knowledge {
@@ -27,6 +26,10 @@ public class Knowledge {
 
     @ManyToOne
     private Philosopher philosopher;
+
+    @OneToMany
+    @JoinColumn(name = "knowledge_id")
+    private List<Enlightenment> comments = new ArrayList<>();
 
     public Knowledge(){ }
 
@@ -52,5 +55,9 @@ public class Knowledge {
     public Philosopher getPhilosopher() { return philosopher; }
 
     public void setPhilosopher(Philosopher philosopher) { this.philosopher = philosopher; }
+
+    public List<Enlightenment> getComments() { return comments; }
+
+    public void setComments(List<Enlightenment> comments) { this.comments = comments; }
 
 }

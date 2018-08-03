@@ -1,9 +1,11 @@
 package com.example.philosophy.controllers;
 
 import com.example.philosophy.models.Branch;
+import com.example.philosophy.models.Enlightenment;
 import com.example.philosophy.models.Knowledge;
 import com.example.philosophy.models.Philosopher;
 import com.example.philosophy.models.data.BranchDao;
+import com.example.philosophy.models.data.EnlightenmentDao;
 import com.example.philosophy.models.data.KnowledgeDao;
 import com.example.philosophy.models.data.PhilosopherDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("knowledge")
@@ -20,6 +23,9 @@ public class KnowledgeController {
 
     @Autowired
     KnowledgeDao knowledgeDao;
+
+    @Autowired
+    EnlightenmentDao enlightenmentDao;
 
     @Autowired
     BranchDao branchDao;
@@ -73,17 +79,24 @@ public class KnowledgeController {
             newKnowledge.setPhilosopher(u);
             newKnowledge.setBranch(branch);
             knowledgeDao.save(newKnowledge);
-            return "redirect:";
+            return "redirect:/{id}";
         }
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String knowledgePage(Model model, @PathVariable int id){
+    public String knowledgePage(Model model, @PathVariable int id,
+                                @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            return "redirect:/philosopher/login";
+        }
 
         Knowledge knowledge = knowledgeDao.findById(id).orElse(null);
+        List<Enlightenment> comments = knowledge.getComments();
 
         model.addAttribute("philosophy", knowledge);
+        model.addAttribute("enlightenment", comments);
         model.addAttribute("title", knowledge.getName());
 
         return "knowledge/view";

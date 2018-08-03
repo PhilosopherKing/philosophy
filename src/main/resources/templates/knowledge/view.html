@@ -35,7 +35,23 @@
 
     <center><h3>Enlightenment</h3></center>
 
+    <center><p th:unless="${enlightenment} and ${enlightenment.size()}">No Enlightenment :(</p></center>
 
+    <center>
+        <div class="card border-primary mb-3" style="max-width:600px;" th:each="comment : ${enlightenment}">
+            <div class="card-header">
+                <center>
+                    <strong><h4><figcaption><a th:href="'/knowledge/' + ${comment.knowledge.id}" th:text="${comment.knowledge.name}"></a></figcaption></h4></strong>
+                </center>
+            </div>
+            <div class="card-body">
+                <br />
+                <center>
+                    <p th:text="${comment.body}"></p>
+                </center>
+            </div>
+        </div>
+    </center>
 
 </div>
 
