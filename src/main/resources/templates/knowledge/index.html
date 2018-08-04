@@ -26,12 +26,13 @@
             </center>
         </div>
         <div class="card-body">
-            <i><figcaption><a th:href="'/philosopher/' + ${info.philosopher.id}" th:text="'Written By: ' + ${info.philosopher.username}">written by: </a></figcaption></i>
             <br />
             <center>
                 <p th:text="${info.body}"></p>
             </center>
             <br />
+            <footer class="blockquote-footer"><i><figcaption><a th:href="'/philosopher/' + ${info.philosopher.id}" th:text="'Written By: ' + ${info.philosopher.username}">written by: </a></figcaption></i></footer>
+            <br/>
             <a href="/knowledge/remove">Remove</a>
         </div>
     </div>

@@ -79,7 +79,7 @@ public class KnowledgeController {
             newKnowledge.setPhilosopher(u);
             newKnowledge.setBranch(branch);
             knowledgeDao.save(newKnowledge);
-            return "redirect:/{id}";
+            return "redirect:" + newKnowledge.getId();
         }
 
     }
@@ -100,6 +100,46 @@ public class KnowledgeController {
         model.addAttribute("title", knowledge.getName());
 
         return "knowledge/view";
+    }
+
+    @RequestMapping(value = "{id}/enlightenment/add", method = RequestMethod.GET)
+    public String displayAddEnlightenmentForm(Model model, @PathVariable int id,
+                                          @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            return "redirect:/philosopher/login";
+        }
+
+        model.addAttribute("title", "Add Enlightenment");
+        model.addAttribute(new Enlightenment());
+        return "enlightenment/add";
+
+    }
+
+    @RequestMapping(value = "{id}/enlightenment/add", method = RequestMethod.POST)
+    public String processAddEnlightenmentForm(@ModelAttribute @Valid Enlightenment newEnlightenment,
+                                          Errors errors, Model model, @PathVariable int id,
+                                          @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            return "redirect:/philosopher/login";
+        }
+
+        Philosopher u = philosopherDao.findByUsername(username).get(0);
+
+        Knowledge knowledge = knowledgeDao.findById(id).orElse(null);
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Knowledge");
+            return "enlightenment/add";
+        } else {
+            model.addAttribute("enlightenment", newEnlightenment);
+            newEnlightenment.setPhilosopher(u);
+            newEnlightenment.setKnowledge(knowledge);
+            enlightenmentDao.save(newEnlightenment);
+            return "redirect:/knowledge/{id}";
+        }
+
     }
 
 }

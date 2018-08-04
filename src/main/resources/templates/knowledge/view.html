@@ -19,37 +19,38 @@
                 </center>
             </div>
             <div class="card-body">
-                <i><figcaption><a th:href="'/philosopher/' + ${philosophy.philosopher.id}" th:text="'Written By: ' + ${philosophy.philosopher.username}">written by: </a></figcaption></i>
                 <br />
                 <center>
                     <p th:text="${philosophy.body}"></p>
                 </center>
                 <br />
+                <footer class="blockquote-footer"><i><figcaption><a th:href="'/philosopher/' + ${philosophy.philosopher.id}" th:text="'Written By: ' + ${philosophy.philosopher.username}">written by: </a></figcaption></i></footer>
             </div>
         </div>
     </center>
 
+    <br/>
+    <br/>
+
+    <center><a th:href="'/knowledge/' + ${philosophy.id} + '/enlightenment/add/'">Add Enlightenment</a></center>
+
 </div>
 
-<div class="jumbotron" style="margin:20px 65px">
 
-    <center><h3>Enlightenment</h3></center>
+<center><h3>Enlightenment</h3></center>
+
+<div class="jumbotron" style="margin:20px 65px">
 
     <center><p th:unless="${enlightenment} and ${enlightenment.size()}">No Enlightenment :(</p></center>
 
     <center>
-        <div class="card border-primary mb-3" style="max-width:600px;" th:each="comment : ${enlightenment}">
-            <div class="card-header">
-                <center>
-                    <strong><h4><figcaption><a th:href="'/knowledge/' + ${comment.knowledge.id}" th:text="${comment.knowledge.name}"></a></figcaption></h4></strong>
-                </center>
-            </div>
-            <div class="card-body">
-                <br />
-                <center>
-                    <p th:text="${comment.body}"></p>
-                </center>
-            </div>
+        <div th:each="comment : ${enlightenment}">
+            <blockquote class="blockquote text-center" style="max-width:600px;">
+                <p class="mb-0" th:text="${comment.body}"></p>
+                <footer class="blockquote-footer"><i><figcaption><a th:href="'/philosopher/' + ${comment.philosopher.id}" th:text="${comment.philosopher.username}">written by: </a></figcaption></i></footer>
+            </blockquote>
+            <hr/>
+            <br/>
         </div>
     </center>
 
