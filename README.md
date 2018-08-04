@@ -1,4 +1,4 @@
-# philosophy
+# Philosophy
 
 **Philosophy Website**
 
@@ -13,7 +13,6 @@ Website that will allow people to study and research philosophy. It will also al
 * Make post and comments - Users will be able to create new posts when logged in meant for discussion and philosophical debate. New posts will appear in the philosopher's profile in addition to the discussion sections's main page.
 * Upload Files (Update to come...) - Administrators will be able to upload files so that users can view, read, and download philosophy as pdfs. Users will also be able to upload files, such as previously typed papers and articles.
 
- 
 ### Technologies
 
 *	Java
@@ -22,3 +21,12 @@ Website that will allow people to study and research philosophy. It will also al
 *	SpringBoot
 *	ThymeLeaf
 *	JavaScript
+
+
+### Copyright (C) 2018  Kyle Hayes
+
+You should have received a copy of the GNU General Public License along with this program. 
+
+If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
+
+Alternatively, see [https://choosealicense.com/licenses/gpl-3.0/#](https://choosealicense.com/licenses/gpl-3.0/#).
