@@ -22,3 +22,8 @@ Website that will allow people to study and research philosophy. It will also al
 *	SpringBoot
 *	ThymeLeaf
 *	JavaScript
+
+### Copyright (C) 2018  Kyle Hayes
+You should have received a copy of the GNU General Public License along with this program. 
+
+If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
