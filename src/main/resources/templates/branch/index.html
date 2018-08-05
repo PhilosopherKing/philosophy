@@ -17,12 +17,18 @@
 
     <center><h3>Branches of Philosophy</h3></center>
 
-    <br />
+    <script type="text/javascript" th:src="@{/js/sort.js}"></script>
+    <center><button class="btn btn-success btn-sm" onclick="sortListDir()">Sort Alphabetically</button></center>
+
+    <br/>
+    <br/>
+
+<ul id="sort">
 
     <p th:unless="${branches} and ${branches.size()}">No Branches :(</p>
 
     <center>
-        <div class="card border-primary mb-3" style="max-width:600px;" th:each="branch : ${branches}">
+        <div class="card border-primary mb-3" style="max-width:800px; " th:each="branch : ${branches}">
             <div class="card-header">
                 <center>
                     <strong><h4 th:text="${branch.name}"></h4></strong>
@@ -40,6 +46,8 @@
             </div>
         </div>
     </center>
+
+</ul>
 
 </div>
 
