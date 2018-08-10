@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+<center><h3 th:text="${title}">Philosophy</h3></center>
+
+<div class="alert alert-dismissible alert-success" style="margin:20px" th:if="${message}" >
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong th:text="${message}"/>
+    <a href="#" class="alert-link">Well Done!</a>.
+</div>
+
+<div class="jumbotron" style="margin:20px 65px">
+<center><h3>Sages + Wisdom</h3></center>
+
+    <br/>
+
+    <center>
+    <form method="post" action="/sage/add-wisdom" th:object="${wisdom}">
+
+        <div class="card border-success mb-3" style="max-width: 400px;">
+            <div class="card-header">
+
+                <div class="form-group">
+                    <label th:for="sage">Sage: </label>
+                    <select class="form-control" style="max-width: 300px" name="sageId">
+                        <option th:each="sage : ${sages}"
+                                th:text="${sage.name}"
+                                th:value="${sage.id}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label th:for="branch">Branch: </label>
+                    <select class="form-control" style="max-width: 300px" name="branchId">
+                        <option th:each="branch : ${branch}"
+                                th:text="${branch.name}"
+                                th:value="${branch.id}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label th:for="name">Name</label>
+                    <input class="form-control" th:field="*{name}" placeholder="Name"/>
+                    <span th:errors="*{name}" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label th:for="source">Source</label>
+                    <input class="form-control" type="text" th:field="*{source}" placeholder="URL goes here"/>
+                    <span th:errors="*{source}" class="error"></span>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                <div>
+                    <center>
+                        <label></label>
+                        <input class="btn btn-success btn-lg" type="submit" value="Add" />
+                    </center>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    </center>
+
+</div>
+
+<div class="jumbotron" style="margin:20px 65px">
+    <center><h3>Uploads</h3></center>
+
+    <br/>
+
+    <center>
+        <form method="post" enctype="multipart/form-data" action="https://s3.console.aws.amazon.com/s3/buckets/philosophylibrary/wisdom/?region=us-east-2&tab=overview">
+
+            <div class="card border-success mb-3" style="max-width: 600px;">
+
+                <div class="card-header">
+                    <div class="form-group">
+                        <label>File to Upload: </label>
+                        <input class="form-control" style="max-width: 400px" aria-describedby="fileHelp" type="file" name="file"/>
+                        <small id="fileHelp" class="form-text text-muted">Save to S3!</small>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div>
+                        <center>
+                            <label></label>
+                            <input type="submit" value="Upload to Bucket" />
+                        </center>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </center>
+
+    <br/>
+
+    <!-- <script type="text/javascript" th:src="@{/js/file-explorer.js}"></script>
+    <center><button class="btn btn-success btn-sm" id="file-explorer" onclick="upload()">Upload Files Here</button></center> -->
+    <center><a href="https://s3.console.aws.amazon.com/s3/buckets/philosophylibrary/?region=us-east-2&tab=overview">Bucket Here</a></center>
+
+</div>
+
+<div class="jumbotron" style="margin:20px 65px" >
+<table class="table table-hover">
+    <thead>
+    <tr class="table-success">
+        <th scope="col">Title</th>
+        <th scope="col">File</th>
+        <th scope="col">Sage</th>
+    </tr>
+    </thead>
+    <tbody th:each="wisdom : ${sources}" >
+    <tr class="table-light">
+        <th scope="row">Description</th>
+        <td><a th:href="${wisdom.source}" th:text="${wisdom.name}" /></td>
+        <td th:text="${wisdom.sage.name}">Column content</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</html>

@@ -11,13 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -62,43 +58,36 @@ public class SageController {
         }
     }
 
-    @RequestMapping(value = "upload-file", method = RequestMethod.GET)
+    @RequestMapping(value = "add-wisdom", method = RequestMethod.GET)
     public String listUploadedFiles(Model model) throws IOException {
 
-        model.addAttribute("title", "Upload a New File");
+        model.addAttribute("title", "Add Wisdom");
         model.addAttribute(new Wisdom());
         model.addAttribute("sages", sageDao.findAll());
         model.addAttribute("branch", branchDao.findAll());
-        model.addAttribute("files", wisdomDao.findAll());
+        model.addAttribute("sources", wisdomDao.findAll());
 
-        return "sage/upload";
+        return "sage/add-wisdom";
     }
 
-    @RequestMapping(value = "upload-file", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile wisdom, @RequestParam int sageId,
+    @RequestMapping(value = "add-wisdom", method = RequestMethod.POST)
+    public String handleFileUpload(@ModelAttribute @Valid Wisdom newWisdom, @RequestParam int sageId,
                                    @RequestParam int branchId, RedirectAttributes redirectAttributes) throws IOException {
 
-        Wisdom uploadFile = new Wisdom();
 
         Sage sage = sageDao.findById(sageId).orElse(null);
 
         Branch branch = branchDao.findById(branchId).orElse(null);
 
-        uploadFile.setFileName(wisdom.getOriginalFilename());
-        uploadFile.setSage(sage);
-        uploadFile.setBranch(branch);
+        newWisdom.setSage(sage);
+        newWisdom.setBranch(branch);
 
-        // if(!wisdom.isEmpty()){
-            // byte[] bytes = wisdom.getBytes();
-            // uploadFile.setFile(bytes);
-        // }
-
-        wisdomDao.save(uploadFile);
+        wisdomDao.save(newWisdom);
 
         redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + wisdom.getOriginalFilename() + "!");
+                "You successfully added " + newWisdom.getName() + "!");
 
-        return "redirect:/sage/upload-file";
+        return "redirect:/sage/add-wisdom";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

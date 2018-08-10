@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Wisdom {
@@ -14,9 +12,9 @@ public class Wisdom {
     @GeneratedValue
     private long id;
 
-    private String fileName;
+    private String name;
 
-    private byte[] file;
+    private String source;
 
     @ManyToOne
     private Sage sage;
@@ -28,15 +26,13 @@ public class Wisdom {
 
     public long getId() { return id; }
 
-    public String getFileName() { return fileName; }
+    public String getName() { return name; }
 
-    public void setFileName(String fileName) { this.fileName = fileName; }
+    public void setName(String name) { this.name = name; }
 
-    public Wisdom(byte[] file){ this.file = file; }
+    public String getSource() { return source; }
 
-    public byte[] getFile() { return file; }
-
-    public void setFile (byte[] file) { this.file = file; }
+    public void setSource(String source) { this.source = source; }
 
     public Sage getSage() { return sage; }
 

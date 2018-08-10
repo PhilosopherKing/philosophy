@@ -2,8 +2,6 @@ package com.example.philosophy.controllers;
 
 import com.example.philosophy.models.Branch;
 import com.example.philosophy.models.Knowledge;
-import com.example.philosophy.models.Sage;
-import com.example.philosophy.models.Wisdom;
 import com.example.philosophy.models.data.BranchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
