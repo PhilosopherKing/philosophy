@@ -77,35 +77,6 @@
     <br/>
 
     <center>
-        <form method="post" enctype="multipart/form-data" action="https://s3.console.aws.amazon.com/s3/buckets/philosophylibrary/wisdom/?region=us-east-2&tab=overview">
-
-            <div class="card border-success mb-3" style="max-width: 600px;">
-
-                <div class="card-header">
-                    <div class="form-group">
-                        <label>File to Upload: </label>
-                        <input class="form-control" style="max-width: 400px" aria-describedby="fileHelp" type="file" name="file"/>
-                        <small id="fileHelp" class="form-text text-muted">Save to S3!</small>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div>
-                        <center>
-                            <label></label>
-                            <input type="submit" value="Upload to Bucket" />
-                        </center>
-                    </div>
-                </div>
-
-            </div>
-
-        </form>
-    </center>
-
-    <br/>
-
-    <center>
         <form action="http://testbucke4.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
 
             <div class="card border-success mb-3" style="max-width: 600px;">
@@ -115,7 +86,7 @@
                             Key to upload:
                             <input class="form-control" style="max-width: 400px" type="input"  name="key" value="testing/${filename}" /><br />
                             <input type="hidden" name="acl" value="public-read" />
-                            <input type="hidden" name="success_action_redirect" value="http://localhost:8080/sage/add-wisdom" />
+                            <input type="hidden" name="success_action_redirect" value="https://s3.console.aws.amazon.com/s3/buckets/testbucke4/testing/?region=us-east-2&tab=overview" />
                             <!-- Content-Type: -->
                             <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
                             <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />

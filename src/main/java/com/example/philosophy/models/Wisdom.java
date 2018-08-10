@@ -10,7 +10,7 @@ public class Wisdom {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class Wisdom {
 
     public Wisdom() { }
 
-    public long getId() { return id; }
+    public int getId() { return id; }
 
     public String getName() { return name; }
 
