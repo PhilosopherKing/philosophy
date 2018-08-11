@@ -15,7 +15,7 @@
         <div class="card border-primary mb-3" style="max-width:600px;" th:each="philosophy : ${philosophies}">
             <div class="card-header">
                 <center>
-                    <strong><h4><a th:href="${philosophy.source}" th:text="${philosophy.name}"></a></h4></strong>
+                    <strong><h4 th:text="${philosophy.name}"></h4></strong>
                     <i><figcaption><a th:href="'/' + ${philosophy.branch.id}" th:text="'Branch: ' + ${philosophy.branch.name}"></a></figcaption></i>
                 </center>
             </div>
@@ -26,7 +26,7 @@
                     <p th:text="${philosophy.description}"></p>
                 </center>
                 <br />
-                <a href="/sage/remove">Remove</a>
+                <a th:href="${philosophy.source}">Download Here</a>
             </div>
         </div>
     </center>

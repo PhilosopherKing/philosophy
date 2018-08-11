@@ -9,7 +9,7 @@
 
 <div class="jumbotron" style="margin:20px 65px" >
 
-    <p th:unless="${philosophies} and ${philosophies.size()}">No Knowledge :(</p>
+    <p th:unless="${philosophies} and ${philosophies.size()}">No Knowledge :( <br/><br/> Add Knowledge <a href="/knowledge/add">here</a></p>
 
     <center>
         <div class="card border-primary mb-3" style="max-width:600px;" th:each="philosophy : ${philosophies}">
