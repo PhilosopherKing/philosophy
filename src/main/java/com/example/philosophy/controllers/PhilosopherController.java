@@ -6,10 +6,7 @@ import com.example.philosophy.models.data.PhilosopherDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -55,10 +52,15 @@ public class PhilosopherController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login(Model model) {
-        model.addAttribute("title", "Philosopher Login");
-        model.addAttribute(new Philosopher());
-        return "philosopher/login";
+    public String login(Model model, @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("none")) {
+            model.addAttribute("title", "Philosopher Login");
+            model.addAttribute(new Philosopher());
+            return "philosopher/login";
+        }
+        return "redirect:";
+
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -78,7 +80,7 @@ public class PhilosopherController {
             Cookie c = new Cookie("philosopher", philosopher.getUsername());
             c.setPath("/");
             response.addCookie(c);
-            return "redirect:/philosopher";
+            return "redirect:";
         } else {
             model.addAttribute("message", "Invalid Password");
             model.addAttribute("title", "Philosopher Login");
