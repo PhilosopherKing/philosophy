@@ -41,7 +41,7 @@ public class PhilosopherController {
         if(verify.equals(newPhilosopher.getPassword())) {
             model.addAttribute("philosopher", newPhilosopher);
             philosopherDao.save(newPhilosopher);
-            return "redirect:";
+            return "redirect:/philosopher/login";
         } else {
             model.addAttribute("username", newPhilosopher.getUsername());
             model.addAttribute("email", newPhilosopher.getEmail());
