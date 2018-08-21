@@ -39,10 +39,18 @@ public class SageController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String addForm (Model model) {
-        model.addAttribute("title", "Add a new Sage");
-        model.addAttribute(new Sage());
-        return "sage/add";
+    public String addForm (Model model, @CookieValue(value = "philosopher", defaultValue = "none") String username) {
+
+        if(username.equals("PhilosopherKing")) {
+
+            model.addAttribute("title", "Add a new Sage");
+            model.addAttribute(new Sage());
+            return "sage/add";
+
+        } else {
+
+            return "redirect:";
+        }
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -59,21 +67,28 @@ public class SageController {
     }
 
     @RequestMapping(value = "add-wisdom", method = RequestMethod.GET)
-    public String listUploadedFiles(Model model) throws IOException {
+    public String listUploadedFiles(Model model, @CookieValue(value = "philosopher", defaultValue = "none") String username,
+                                    RedirectAttributes redirectAttributes) throws IOException {
 
-        model.addAttribute("title", "Add Wisdom");
-        model.addAttribute(new Wisdom());
-        model.addAttribute("sages", sageDao.findAll());
-        model.addAttribute("branch", branchDao.findAll());
-        model.addAttribute("sources", wisdomDao.findAll());
+        if(username.equals("PhilosopherKing")) {
 
-        return "sage/add-wisdom";
+            model.addAttribute("title", "Add Wisdom");
+            model.addAttribute(new Wisdom());
+            model.addAttribute("sages", sageDao.findAll());
+            model.addAttribute("branch", branchDao.findAll());
+            model.addAttribute("sources", wisdomDao.findAll());
+
+            return "sage/add-wisdom";
+
+        } else {
+
+            return "redirect:";
+        }
     }
 
     @RequestMapping(value = "add-wisdom", method = RequestMethod.POST)
     public String handleFileUpload(@ModelAttribute @Valid Wisdom newWisdom, @RequestParam int sageId,
                                    @RequestParam int branchId, RedirectAttributes redirectAttributes) throws IOException {
-
 
         Sage sage = sageDao.findById(sageId).orElse(null);
 

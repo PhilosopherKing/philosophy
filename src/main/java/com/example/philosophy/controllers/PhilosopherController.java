@@ -36,13 +36,18 @@ public class PhilosopherController {
     }
 
     @RequestMapping(value = "sign-up", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute Philosopher newPhilosopher, String verify) {
+    public String add(Model model, @ModelAttribute Philosopher newPhilosopher, String verify, String username) {
 
-        if(verify.equals(newPhilosopher.getPassword())) {
+        List<Philosopher> philosopherList = philosopherDao.findByUsername(username);
+
+        if(!philosopherList.isEmpty()){
+            model.addAttribute("message", "Username already exist!");
+            return "philosopher/add";
+        } else if(verify.equals(newPhilosopher.getPassword())) {
             model.addAttribute("philosopher", newPhilosopher);
             philosopherDao.save(newPhilosopher);
             return "redirect:/philosopher/login";
-        } else {
+        }  else {
             model.addAttribute("username", newPhilosopher.getUsername());
             model.addAttribute("email", newPhilosopher.getEmail());
             model.addAttribute("title", "Philosopher Sign-up");

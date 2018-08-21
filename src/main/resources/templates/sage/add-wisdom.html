@@ -77,8 +77,32 @@
 
 </div>
 
+
+<div class="jumbotron" style="margin:20px 65px" >
+    <center><h3>All Files</h3></center>
+
+<table class="table table-hover">
+    <thead>
+    <tr class="table-success">
+        <th scope="col">Sage</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody th:each="wisdom : ${sources}" >
+    <tr class="table-light">
+        <td th:text="${wisdom.sage.name}">Column content</td>
+        <td><a th:href="${wisdom.source}" th:text="${wisdom.name}" /></td>
+        <th scope="row">Description</th>
+    </tr>
+    </tbody>
+</table>
+
+</div>
+
+
 <div class="jumbotron" style="margin:20px 65px">
-    <center><h3>Uploads</h3></center>
+    <center><h3>Upload</h3></center>
 
     <br/>
 
@@ -89,19 +113,19 @@
 
                 <div class="card-header">
                     <div class="form-group">
-                            Key to upload:
-                            <input class="form-control" style="max-width: 400px" type="input"  name="key" value="testing/${filename}" /><br />
-                            <input type="hidden" name="acl" value="public-read" />
-                            <input type="hidden" name="success_action_redirect" value="https://s3.console.aws.amazon.com/s3/buckets/testbucke4/testing/?region=us-east-2&tab=overview" />
-                            <!-- Content-Type: -->
-                            <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
-                            <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />
-                            File to Upload:
-                            <div class="form-group">
-                                <input class="form-control" style="max-width: 400px" aria-describedby="fileAssistance" type="file" name="file"/>
-                                <small id="fileAssistance" class="form-text text-muted">Save to S3!</small>
-                            </div>
-                            <!-- The elements after this will be ignored -->
+                        <!-- Key to upload: -->
+                        <input class="form-control" style="max-width: 400px" type="hidden"  name="key" value="testing/${filename}" /><br />
+                        <input type="hidden" name="acl" value="public-read" />
+                        <input type="hidden" name="success_action_redirect" value="" />
+                        <!-- Content-Type: -->
+                        <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
+                        <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />
+                        File to Upload:
+                        <div class="form-group">
+                            <input class="form-control" style="max-width: 400px" aria-describedby="fileAssistance" type="file" name="file"/>
+                            <small id="fileAssistance" class="form-text text-muted">Upload (S3) !</small>
+                        </div>
+                        <!-- The elements after this will be ignored -->
                     </div>
                 </div>
 
@@ -123,25 +147,6 @@
 
     <center><a href="https://s3.console.aws.amazon.com/s3/home?region=us-east-2">Buckets Here</a></center>
 
-</div>
-
-<div class="jumbotron" style="margin:20px 65px" >
-<table class="table table-hover">
-    <thead>
-    <tr class="table-success">
-        <th scope="col">Title</th>
-        <th scope="col">File</th>
-        <th scope="col">Sage</th>
-    </tr>
-    </thead>
-    <tbody th:each="wisdom : ${sources}" >
-    <tr class="table-light">
-        <th scope="row">Description</th>
-        <td><a th:href="${wisdom.source}" th:text="${wisdom.name}" /></td>
-        <td th:text="${wisdom.sage.name}">Column content</td>
-    </tr>
-    </tbody>
-</table>
 </div>
 
 </body>
